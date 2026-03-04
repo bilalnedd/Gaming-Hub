@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ultimate Gaming Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🎮 Ultimate Gaming Hub</h1>
+    <nav>
+        <a href="#playstation">PlayStation</a>
+        <a href="#xbox">Xbox</a>
+        <a href="#vr">Virtual Reality</a>
+        <button onclick="toggleDarkMode()">🌙</button>
+    </nav>
+</header>
+
+<section class="search-section">
+    <input type="text" id="searchBar" placeholder="Search games..." onkeyup="searchGames()">
+</section>
+
+<section id="playstation">
+    <h2>PlayStation Games</h2>
+    <div class="game-container">
+        <div class="game-card">
+            <img src="images/spiderman.jpg" alt="Spider-Man 2">
+            <h3>Spider-Man 2</h3>
+            <p>Action-packed Marvel adventure exclusive to PlayStation.</p>
+        </div>
+
+        <div class="game-card">
+            <img src="images/godofwar.jpg" alt="God of War Ragnarök">
+            <h3>God of War Ragnarök</h3>
+            <p>Epic Norse mythology action game.</p>
+        </div>
+    </div>
+</section>
+
+<section id="xbox">
+    <h2>Xbox Games</h2>
+    <div class="game-container">
+        <div class="game-card">
+            <img src="images/halo.jpg" alt="Halo Infinite">
+            <h3>Halo Infinite</h3>
+            <p>Legendary sci-fi FPS adventure.</p>
+        </div>
+
+        <div class="game-card">
+            <img src="images/forza.jpg" alt="Forza Horizon 5">
+            <h3>Forza Horizon 5</h3>
+            <p>Open-world racing in stunning Mexico landscapes.</p>
+        </div>
+    </div>
+</section>
+
+<section id="vr">
+    <h2>Virtual Reality Games</h2>
+    <div class="game-container">
+        <div class="game-card">
+            <img src="images/beat saber.jpg" alt="Beat Saber">
+            <h3>Beat Saber</h3>
+            <p>Rhythm-based VR lightsaber game.</p>
+        </div>
+
+        <div class="game-card">
+            <img src="images/alyx.jpg" alt="Half-Life Alyx">
+            <h3>Half-Life: Alyx</h3>
+            <p>Immersive VR FPS experience.</p>
+        </div>
+    </div>
+</section>
+
+<section class="contact">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Ultimate Gaming Hub | Built for Gamers 🎮</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
