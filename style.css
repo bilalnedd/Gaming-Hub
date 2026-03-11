@@ -1,0 +1,21 @@
+body{
+    background-color: #1e1e2f;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+#main-title{
+    color: gold;
+    font-size: 40px;
+}
+
+.section{
+    color: cyan;
+}
+
+.text{
+    font-size: 18px;
+    margin: 15px;
+    padding: 10px;
+}
