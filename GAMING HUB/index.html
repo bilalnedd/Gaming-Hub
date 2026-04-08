@@ -3,69 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PixelHub | Home</title>
-  <link rel="stylesheet" href="style.css">
+  <title>PixelHub | Ultimate Gaming Arena</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* --- THEME & RESET --- */
+    :root {
+      --primary: #7224f2;
+      --accent: #00ffcc;
+      --bg: #0b0b0d;
+      --card-bg: #16161a;
+      --text: #ffffff;
+      --nav-height: 70px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    /* --- NAVIGATION --- */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      height: var(--nav-height);
+      background: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid var(--primary);
+      position: fixed;
+      top: 0; width: 100%; z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo h1 { margin: 0; font-size: 1.5rem; color: var(--primary); letter-spacing: 2px; }
+    .logo span { font-size: 0.7rem; color: #888; text-transform: uppercase; display: block; margin-top: -5px; }
+
+    .menu-bar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+    .menu-bar a:hover { color: var(--accent); }
+
+    .header-extras { display: flex; align-items: center; gap: 15px; }
+    .live-clock { font-family: monospace; color: var(--accent); font-weight: bold; }
+
+    /* --- LAYOUT --- */
+    section {
+      padding: 100px 5% 60px;
+      min-height: 100vh;
+      border-bottom: 1px solid #222;
+    }
+
+    h2 { font-size: 2.5rem; margin-bottom: 30px; border-left: 5px solid var(--primary); padding-left: 15px; }
+
+    /* --- HOME SECTION --- */
+    .slider-container { position: relative; overflow: hidden; border-radius: 12px; margin-bottom: 25px; }
+    .slides { display: flex; transition: transform 0.6s ease-in-out; }
+    .slide { min-width: 100%; }
+    .slide img { width: 100%; height: 450px; object-fit: cover; }
+    
+    .ticker { background: var(--primary); padding: 12px; border-radius: 6px; font-weight: bold; margin: 20px 0; font-size: 0.9rem; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .media-card { background: var(--card-bg); padding: 15px; border-radius: 10px; }
+    .media-card img { width: 100%; border-radius: 6px; }
+
+    /* --- GAMES SECTION --- */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .game-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; transition: 0.3s; cursor: pointer; border: 1px solid transparent; }
+    .game-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+    .game-card img { width: 100%; height: 180px; object-fit: cover; }
+    .game-info { padding: 20px; }
+    .tag { background: var(--primary); font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+
+    /* --- NEWS SECTION --- */
+    .news-container { display: flex; flex-direction: column; gap: 20px; }
+    .news-item { display: flex; background: var(--card-bg); border-radius: 10px; overflow: hidden; gap: 20px; }
+    .news-item img { width: 250px; object-fit: cover; }
+    .news-body { padding: 20px; }
+
+    /* --- LEADERBOARD SECTION --- */
+    .table-wrapper { overflow-x: auto; background: var(--card-bg); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    th, td { padding: 18px; text-align: left; border-bottom: 1px solid #222; }
+    th { background: var(--primary); color: white; text-transform: uppercase; font-size: 0.8rem; }
+    tr:hover { background: #1f1f25; }
+    .rank-gold { color: #ffd700; font-weight: bold; }
+
+    /* --- COMMUNITY SECTION --- */
+    .comm-stats { display: flex; justify-content: space-around; text-align: center; margin-top: 40px; }
+    .stat-item h3 { font-size: 2.5rem; color: var(--accent); margin-bottom: 0; }
+    .join-card { background: linear-gradient(135deg, #7224f2 0%, #3a0088 100%); padding: 40px; border-radius: 15px; text-align: center; margin-top: 30px; }
+
+    /* --- FOOTER --- */
+    footer { background: #000; padding: 50px 5% 20px; text-align: center; }
+    .social { margin-bottom: 20px; }
+    .social i { font-size: 1.8rem; margin: 0 15px; cursor: pointer; transition: 0.3s; }
+    .social i:hover { color: var(--accent); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 850px) {
+      .two-col, .news-item { grid-template-columns: 1fr; flex-direction: column; }
+      .news-item img { width: 100%; height: 200px; }
+      .menu-bar { display: none; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="top-bar">
     <div class="logo"><h1>PIXELHUB</h1><span>#1 gaming arena</span></div>
     <nav class="menu-bar">
-      <a href="index.html" class="active-menu">Home</a>
-      <a href="games.html">Games</a>
-      <a href="news.html">News</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      <a href="community.html">Community</a>
+      <a href="#home">Home</a>
+      <a href="#games">Games</a>
+      <a href="#news">News</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#community">Community</a>
     </nav>
     <div class="header-extras">
-      <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Search games..."></div>
-      <div class="live-clock" id="liveClock">--:-- --</div>
+      <div class="live-clock" id="liveClock">--:--:--</div>
     </div>
   </header>
 
-  <main class="page-container">
-    <h2>🎮 Welcome to PixelHub</h2>
-
-    <!-- SLIDER -->
+  <section id="home">
+    <h2>🎮 Home Arena</h2>
     <div class="slider-container">
       <div class="slides" id="slides">
-        <div class="slide"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&auto=format" alt="gaming setup"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200&auto=format" alt="tournament"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&auto=format" alt="esports"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="setup"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200" alt="tournament"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200" alt="esports"></div>
       </div>
-      <button class="prev" onclick="changeSlide(-1)">❮</button>
-      <button class="next" onclick="changeSlide(1)">❯</button>
     </div>
 
-    <!-- Trending ticker (added feature) -->
-    <div class="ticker"><i class="fas fa-fire"></i> TRENDING: Valorant Champions • Elden Ring DLC • New CS2 update • GTA VI trailer</div>
+    <div class="ticker"><i class="fas fa-fire"></i> TRENDING: Valorant Champions 2026 • Elden Ring Patch • New CS2 Skins • GTA VI Leaks</div>
 
-    <!-- Two columns: video + image -->
     <div class="two-col">
       <div class="media-card">
-        <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abc" title="game trailer" frameborder="0" allowfullscreen></iframe>
-        <p>🔥 Exclusive gameplay reveal</p>
+        <iframe width="100%" height="250" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen style="border-radius:6px;"></iframe>
+        <p>🔥 Exclusive Gameplay Reveal: "Neon Shadows"</p>
       </div>
       <div class="media-card">
-        <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&auto=format" alt="tournament prize">
-        <p>🏆 Summer Clash 2025 – $50K prize pool</p>
+        <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600" alt="tournament">
+        <p>🏆 Summer Clash 2026 – $50K Prize Pool Registration Open</p>
       </div>
     </div>
+  </section>
 
-    <!-- Formatted paragraphs -->
-    <p class="highlight-bg"><i class="fas fa-gamepad"></i> PixelHub is your ultimate destination for game reviews, esports news, and a vibrant community. Join millions of gamers worldwide.</p>
-    <p>We bring you daily updates, exclusive interviews, and the most accurate leaderboards. Level up your gaming experience!</p>
-  </main>
+  <section id="games">
+    <h2>🕹️ Explore Games</h2>
+    <div class="games-grid">
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400" alt="game">
+        <div class="game-info">
+          <span class="tag">FPS</span>
+          <h3>Cyber Strike</h3>
+          <p>Tactical 5v5 combat in a neon-drenched future.</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400" alt="game">
+        <div class="game-info">
+          <span class="tag">Racing</span>
+          <h3>Velocity 2077</h3>
+          <p>High-stakes underground racing with custom builds.</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400" alt="game">
+        <div class="game-info">
+          <span class="tag">RPG</span>
+          <h3>Void Walkers</h3>
+          <p>An open-world RPG where every choice matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <h2>📰 Latest News</h2>
+    <div class="news-container">
+      <div class="news-item">
+        <img src="https://images.unsplash.com/photo-1605895617484-3ef02095f991?w=400" alt="news">
+        <div class="news-body">
+          <span style="color:var(--accent)">PATCH NOTES</span>
+          <h3>Balance Update v3.11</h3>
+          <p>Major nerfs to "Void Blade" and buffs to sniper classes to improve competitive play balance.</p>
+          <small>Posted 2 hours ago by PixelTeam</small>
+        </div>
+      </div>
+      <div class="news-item">
+        <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400" alt="news">
+        <div class="news-body">
+          <span style="color:var(--accent)">HARDWARE</span>
+          <h3>New Gen GPU Benchmarks</h3>
+          <p>Testing the latest 50-series cards on 4K Ultra settings. Is it worth the upgrade?</p>
+          <small>Posted 5 hours ago by HardwareWiz</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leaderboard">
+    <h2>🏆 Global Rankings</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Rank</th><th>Player Name</th><th>Level</th><th>K/D Ratio</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank-gold">1</td><td>GhostWalker_X</td><td>154</td><td>4.2</td><td style="color:#00ff00">ONLINE</td></tr>
+          <tr><td>2</td><td>PixelQueen</td><td>142</td><td>3.8</td><td style="color:#00ff00">ONLINE</td></tr>
+          <tr><td>3</td><td>NoobSlayer_99</td><td>138</td><td>3.5</td><td style="color:#ff4444">OFFLINE</td></tr>
+          <tr><td>4</td><td>VortexAlpha</td><td>121</td><td>3.1</td><td style="color:#00ff00">ONLINE</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="community">
+    <h2>👥 Community Hub</h2>
+    <div class="comm-stats">
+      <div class="stat-item"><h3>1.2M</h3><p>Gamers Online</p></div>
+      <div class="stat-item"><h3>450K</h3><p>Discord Members</p></div>
+      <div class="stat-item"><h3>15K</h3><p>Active Tournaments</p></div>
+    </div>
+    <div class="join-card">
+      <h3>Ready to Level Up?</h3>
+      <p>Join our Discord to find teammates, participate in giveaways, and chat with developers.</p>
+      <button style="background: white; color: var(--primary); border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer;">JOIN OUR DISCORD</button>
+    </div>
+  </section>
 
   <footer>
-    <div class="footer-content">
-      <div><i class="fas fa-map-marker-alt"></i> Global · 24/7</div>
-      <div class="social"><i class="fab fa-discord"></i><i class="fab fa-twitch"></i><i class="fab fa-youtube"></i></div>
-      <div>© 2025 PixelHub – all gamers welcome</div>
+    <div class="social">
+      <i class="fab fa-discord"></i><i class="fab fa-twitch"></i><i class="fab fa-youtube"></i><i class="fab fa-twitter"></i>
     </div>
-    <div class="copy">Privacy Policy | Terms of Service | #GameOn</div>
+    <div><i class="fas fa-map-marker-alt"></i> Global Servers · 24/7 Operations</div>
+    <p>© 2026 PixelHub – All Gamers Welcome</p>
+    <div style="font-size: 0.8rem; color: #555;">Privacy Policy | Terms of Service | #GameOn</div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // --- Slider Logic ---
+    let currentSlide = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = 3;
+
+    function moveSlider() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    setInterval(moveSlider, 5000);
+
+    // --- Live Clock Logic ---
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('liveClock').textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
