@@ -1,0 +1,56 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(black, red);
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    background: black;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+}
+
+.left {
+    width: 30%;
+    padding: 20px;
+    background: #111;
+}
+
+.right {
+    width: 70%;
+    padding: 20px;
+}
+
+img {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+table {
+    background: white;
+    color: black;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: black;
+}
